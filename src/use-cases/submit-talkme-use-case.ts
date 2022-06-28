@@ -16,6 +16,18 @@ export class SubmitTalkMeUseCase {
   async execute(request: SubmitTalkMeUseCaseRequest) {
     const { name, email, message } = request;
 
+    if(!name) {
+      throw new Error('Name is required.')
+    }
+
+    if(!email) {
+      throw new Error('Email is required.')
+    }
+
+    if(!message) {
+      throw new Error('Message is required.')
+    }
+
     await this.talkMeRepository.create({
       name,
       email,
